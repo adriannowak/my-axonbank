@@ -9,23 +9,27 @@
 
 package org.axonframework.sample.axonbank.myaxonbank;
 
-import static org.axonframework.commandhandling.GenericCommandMessage.asCommandMessage;
-
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.sample.axonbank.myaxonbank.coreapi.CreateAccountCommand;
+import org.axonframework.sample.axonbank.myaxonbank.coreapi.WithdrawMoneyCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.axonframework.commandhandling.GenericCommandMessage.asCommandMessage;
+
 @RestController
 public class MyController {
 
-  @Autowired(required = false)
+  @Autowired
   private CommandBus commandBus;
 
   @RequestMapping(value = "/hello")
-  public String trigger() {
-    commandBus.dispatch(asCommandMessage(new CreateAccountCommand("123", 1000)));
+  public String say() {
+    System.out.println("Command Bus>>>>" + commandBus);
+    commandBus.dispatch(asCommandMessage(new CreateAccountCommand("1234", 1000)));
+    commandBus.dispatch(asCommandMessage(new WithdrawMoneyCommand("1234", 800)));
     return "Hello!";
+
   }
 }
