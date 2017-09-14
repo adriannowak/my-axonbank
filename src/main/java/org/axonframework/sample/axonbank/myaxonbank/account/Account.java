@@ -42,13 +42,13 @@ public class Account {
   public void on(AccountCreatedEvent accountCreatedEvent) {
     this.accountId = accountCreatedEvent.getAccountId();
     this.overdraftLimit = accountCreatedEvent.getOverdraftLimit();
-    System.out.println("Account Created Event");
+    // System.out.println("Account Created Event");
   }
 
   @CommandHandler
   public void handle(WithdrawMoneyCommand withdrawMoneyCommand)
       throws OverdraftLimitExceededException {
-    System.out.println("Withdraw Money Command");
+    // System.out.println("Withdraw Money Command");
     if (balance + overdraftLimit >= withdrawMoneyCommand.getAmount()) {
       apply(new MoneyWithdrawnEvent(accountId, withdrawMoneyCommand.getAmount(),
           balance - withdrawMoneyCommand.getAmount()));
@@ -59,7 +59,7 @@ public class Account {
 
   @EventSourcingHandler
   public void on(MoneyWithdrawnEvent moneyWithdrawnEvent) {
-    System.out.println("Money Withdrawn Event");
+    // System.out.println("Money Withdrawn Event");
     this.balance = moneyWithdrawnEvent.getBalance();
   }
 }

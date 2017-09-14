@@ -22,7 +22,7 @@ public class MyController {
   @Autowired
   private CommandGateway commandGateway;
 
-  @RequestMapping(value = "/hello")
+  @RequestMapping(value = "/fire")
   public String say() {
     commandGateway.send(new CreateAccountCommand("1234", 1000));
     commandGateway.send(new WithdrawMoneyCommand("1234", 800));

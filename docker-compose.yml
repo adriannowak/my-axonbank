@@ -1,0 +1,27 @@
+version: '2'
+services:
+    # Rabbit MQ
+    rabbit-mq:
+        image: rabbitmq:3-management
+        ports:
+          - "5672:5672"
+          - "15672:15672"
+        environment:
+          - RABBITMQ_DEFAULT_USER=rabbit
+          - RABBITMQ_DEFAULT_PASS=rabbit
+        expose:
+          - 5672
+          - 15672
+    # Eureka discovery service
+    my-axonbank-service:
+        build: ./
+        ports:
+           - 8080:8080
+        environment:
+          - SERVER_PORT=8080
+        expose:
+          - 8080
+        depends_on:
+        - rabbit-mq
+volumes:
+  data-volume:

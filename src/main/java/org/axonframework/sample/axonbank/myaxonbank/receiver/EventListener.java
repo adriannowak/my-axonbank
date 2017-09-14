@@ -19,11 +19,11 @@ public class EventListener {
 
   @EventHandler
   public void on(AccountCreatedEvent accountCreatedEvent) {
-    System.out.println("In Account Created Listener" + accountCreatedEvent);
+    System.out.println("In Account Created Listener:" + accountCreatedEvent);
   }
 
   @EventHandler
   public void on(MoneyWithdrawnEvent withdrawnEvent) {
-    System.out.println("In Account Created Listener" + withdrawnEvent);
+    System.out.println("In Account Created Listener:" + withdrawnEvent);
   }
 }

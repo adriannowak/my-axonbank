@@ -1,0 +1,12 @@
+spring:
+  rabbitmq:
+    host: rabbit-mq
+    username: rabbit
+    password: rabbit
+    port: 5672
+  application:
+    exchange: rabbitmq
+    queue: bank-queue
+axon:
+  amqp:
+    exchange: ${spring.application.exchange}
